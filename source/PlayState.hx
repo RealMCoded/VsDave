@@ -21,7 +21,8 @@ import openfl.desktop.Clipboard;
 import flixel.system.debug.Window;
 #if desktop
 import sys.io.File;
-import openfl.display.BitmapData;
+import openfl.display.BitmapData; 
+import sys.io.Process;
 #end
 import flixel.system.FlxBGSprite;
 import flixel.tweens.misc.ColorTween;
