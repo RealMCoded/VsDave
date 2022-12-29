@@ -53,10 +53,11 @@ class Character extends FlxSprite
 				frames = Paths.getSparrowAtlas('characters/BOYFRIEND', 'shared');
 
 				animation.addByPrefix('idle', 'BF idle dance', 24, false);
-				for (anim in ['left', 'down', 'up', 'right']){
+				for (anim in ['left', 'down', 'up', 'right'])
+				{
 				animation.addByPrefix('sing${anim.toUpperCase()}', 'BF NOTE ${anim.toUpperCase()}0',24,false);
 				animation.addByPrefix('sing${anim.toUpperCase()}miss', 'BF NOTE ${anim.toUpperCase()} MISS',24,false);
-}
+				}
 				animation.addByPrefix('hey', 'BF HEY', 24, false);
 				animation.addByPrefix('dodge', "boyfriend dodge", 24, false);
 				animation.addByPrefix('scared', 'BF idle shaking', 24);
@@ -158,14 +159,10 @@ class Character extends FlxSprite
 			case 'bf-pixel':
 				frames = Paths.getSparrowAtlas('weeb/bfPixel', 'shared');
 				animation.addByPrefix('idle', 'BF IDLE', 24, false);
-				animation.addByPrefix('singUP', 'BF UP NOTE', 24, false);
-				animation.addByPrefix('singLEFT', 'BF LEFT NOTE', 24, false);
-				animation.addByPrefix('singRIGHT', 'BF RIGHT NOTE', 24, false);
-				animation.addByPrefix('singDOWN', 'BF DOWN NOTE', 24, false);
-				animation.addByPrefix('singUPmiss', 'BF UP MISS', 24, false);
-				animation.addByPrefix('singLEFTmiss', 'BF LEFT MISS', 24, false);
-				animation.addByPrefix('singRIGHTmiss', 'BF RIGHT MISS', 24, false);
-				animation.addByPrefix('singDOWNmiss', 'BF DOWN MISS', 24, false);
+				for (anim in ['left', 'down', 'up', 'right']){
+					animation.addByPrefix('sing${anim.toUpperCase()}', 'BF ${anim.toUpperCase()} NOTE',24,false);
+					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'BF ${anim.toUpperCase()} MISS',24,false);
+				}
 
 				loadOffsetFile(curCharacter);
 
@@ -336,11 +333,10 @@ class Character extends FlxSprite
 				// DAVE SHITE ANIMATION LOADING CODE
 				frames = Paths.getSparrowAtlas('dave/characters/thecoolerdave', 'shared');
 				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-
+				for (anim in ['left', 'down', 'up', 'right'])
+					{
+						animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+					}
 				globalOffset = [0, -170];
 
 				loadOffsetFile(curCharacter);
@@ -355,9 +351,10 @@ class Character extends FlxSprite
 
 				animation.addByPrefix('idle', 'Idle', 24, false);
 				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+					{
+						animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+					}
 
 				loadOffsetFile(curCharacter + (isPlayer ? '-playable' : ''));
 
@@ -668,10 +665,10 @@ class Character extends FlxSprite
 				frames = Paths.getSparrowAtlas('joke/bambi-joke', 'shared');
 
 				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+					{
+						animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+					}
 				animation.addByPrefix('hey', 'hey', 24, false);
 
 				loadOffsetFile(curCharacter);
@@ -686,10 +683,10 @@ class Character extends FlxSprite
 			case 'bambi-joke-mad':
 				frames = Paths.getSparrowAtlas('joke/bambi-joke-mad', 'shared');
 				animation.addByPrefix('idle', 'idle', 24, false);
-				animation.addByPrefix('singUP', 'up', 24, false);
-				animation.addByPrefix('singLEFT', 'left', 24, false);
-				animation.addByPrefix('singRIGHT', 'right', 24, false);
-				animation.addByPrefix('singDOWN', 'down', 24, false);
+				for (anim in ['left', 'down', 'up', 'right'])
+					{
+						animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
+					}
 				animation.addByPrefix('die', 'die', 24, false);
 
 				loadOffsetFile(curCharacter);
