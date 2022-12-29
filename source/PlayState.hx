@@ -1,5 +1,4 @@
-package; // "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
-
+// "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
 import CreditsMenuState.CreditsText;
 import TerminalCheatingState.TerminalText;
 import flixel.graphics.frames.FlxFrame;
@@ -239,10 +238,6 @@ class PlayState extends MusicBeatState
 	var notestuffs:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
 	var fc:Bool = true;
-
-	#if SHADERS_ENABLED
-	var wiggleShit:WiggleEffect = new WiggleEffect();
-	#end
 
 	var talking:Bool = true;
 	var songScore:Int = 0;
@@ -6872,11 +6867,6 @@ class PlayState extends MusicBeatState
 					}
 			}
 		}
-
-		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
-		#if SHADERS_ENABLED
-		wiggleShit.update(Conductor.crochet);
-		#end
 		
 		if (curBeat % gfSpeed == 0)
 		{

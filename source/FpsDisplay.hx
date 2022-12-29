@@ -1,9 +1,5 @@
-package;
-
 import openfl.system.System;
 import flixel.math.FlxMath;
-import haxe.Timer;
-import openfl.events.Event;
 import openfl.text.TextField;
 import openfl.text.TextFormat;
 #if gl_stats

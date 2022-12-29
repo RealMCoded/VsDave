@@ -1,5 +1,3 @@
-package;
-
 import flixel.system.FlxAssets.FlxShader;
 
 /*  VS DAVE AND BAMBI SHADERS IMPLEMENTATION

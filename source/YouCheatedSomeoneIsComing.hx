@@ -1,12 +1,8 @@
-package;
-
 #if sys
 import sys.io.File;
 import sys.io.Process;
 #end
 import flixel.*;
-import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
 
 /**
  * scary!!!

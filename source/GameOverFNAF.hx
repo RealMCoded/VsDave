@@ -1,18 +1,10 @@
-package;
-
 import flixel.system.FlxSound;
-import flixel.tweens.FlxTween;
 import flixel.text.FlxText;
 import flixel.FlxSprite;
 import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.FlxSubState;
-import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
-import flash.system.System;
-import lime.app.Application;
-import flixel.effects.FlxFlicker;
 
 class GameOverFNAF extends MusicBeatSubstate
 {

@@ -1,9 +1,5 @@
-package;
-
 import flixel.FlxG;
 import flixel.FlxObject;
-import flixel.FlxSubState;
-import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.util.FlxTimer;
 import flash.system.System;
@@ -47,8 +43,6 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'dave-fnaf' | 'bf-cool':
 				daBf = 'generic-death';
 				deathSuffix = '-generic';
-			case 'bf':
-				daBf = 'bf-dead';
 			default:
 				daBf = char;
 		}
@@ -64,9 +58,7 @@ class GameOverSubstate extends MusicBeatSubstate
 
 		bf = new Boyfriend(x, y, daBf);
 		if (bf.animation.getByName('firstDeath') == null)
-		{
-			bf = new Boyfriend(x, y, "bf");
-		}
+			bf = new Boyfriend(x, y, "bf-dead");
 		add(bf);
 
 		camFollow = new FlxObject(bf.getGraphicMidpoint().x, bf.getGraphicMidpoint().y, 1, 1);
@@ -88,9 +80,7 @@ class GameOverSubstate extends MusicBeatSubstate
 		super.update(elapsed);
 
 		if (controls.ACCEPT)
-		{
 			endBullshit();
-		}
 
 		if (controls.BACK)
 		{

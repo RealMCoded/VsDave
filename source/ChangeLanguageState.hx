@@ -1,5 +1,3 @@
-package;
-
 import flixel.effects.FlxFlicker;
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;

@@ -1,8 +1,5 @@
-package;
-
 import flixel.*;
 import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
 
 /**
  * shut up idiot im not bbpanzu hes a crazy!

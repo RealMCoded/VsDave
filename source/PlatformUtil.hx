@@ -1,5 +1,3 @@
-package;
-
 /*
 	VS DAVE WINDOWS/LINUX/MACOS UTIL
 	You can use this code while you give credit to it.

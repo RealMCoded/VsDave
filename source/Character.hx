@@ -1,13 +1,5 @@
-package;
-
-import sys.FileSystem;
-import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
-import flixel.addons.effects.chainable.FlxEffectSprite;
-import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.animation.FlxBaseAnimation;
-import flixel.graphics.frames.FlxAtlasFrames;
 
 using StringTools;
 
@@ -76,6 +68,7 @@ class Character extends FlxSprite
 
 				flipX = true;
 			case 'bf-dead':
+				frames = Paths.getSparrowAtlas('characters/BOYFRIEND_DEAD', 'shared');
 				animation.addByPrefix('firstDeath', "BF dies", 24, false);
 				animation.addByPrefix('deathLoop', "BF Dead Loop", 24, true);
 				animation.addByPrefix('deathConfirm', "BF Dead confirm", 24, false);

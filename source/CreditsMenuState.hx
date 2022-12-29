@@ -1,5 +1,3 @@
-package;
-
 #if desktop
 import cpp.abi.Abi;
 #end

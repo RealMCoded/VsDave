@@ -1,13 +1,6 @@
-package;
-
-import flixel.group.FlxGroup;
-import haxe.Json;
-import haxe.Http;
 import flixel.math.FlxRandom;
-import Controls.Control;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxSubState;
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
@@ -16,7 +9,6 @@ import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.addons.display.FlxBackdrop;
 import lime.app.Application;
-import flixel.util.FlxAxes;
 
 class PauseSubState extends MusicBeatSubstate
 {

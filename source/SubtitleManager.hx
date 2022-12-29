@@ -1,5 +1,3 @@
-package;
-
 import flixel.group.FlxGroup.FlxTypedGroup;
 import Subtitle.SubtitleProperties;
 
@@ -12,8 +10,5 @@ class SubtitleManager extends FlxTypedGroup<Subtitle>
 		subtitle.manager = this;
 		add(subtitle);
 	}
-	public function onSubtitleComplete(subtitle:Subtitle)
-	{
-		remove(subtitle);
-	}
+	inline public function onSubtitleComplete(subtitle:Subtitle) remove(subtitle);
 }

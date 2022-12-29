@@ -1,12 +1,6 @@
-package;
-
 import flixel.system.FlxAssets.FlxShader;
 import openfl.display.BitmapData;
 import openfl.display.ShaderInput;
-import openfl.utils.Assets;
-import flixel.FlxG;
-import openfl.Lib;
-
 class VCRDistortionShader extends FlxShader // https://www.shadertoy.com/view/ldjGzV and https://www.shadertoy.com/view/Ms23DR and https://www.shadertoy.com/view/MsXGD4 and https://www.shadertoy.com/view/Xtccz4
 {
 	#if SHADERS_ENABLED

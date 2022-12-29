@@ -1,10 +1,4 @@
-package;
-
-import flixel.group.FlxGroup;
-import flixel.FlxG;
-import openfl.utils.AssetCache;
 import flixel.math.FlxRandom;
-import flixel.math.FlxMath;
 import lime.utils.Assets;
 
 using StringTools;
