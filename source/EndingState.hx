@@ -32,11 +32,7 @@ class EndingState extends MusicBeatState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-
-		if (FlxG.keys.pressed.ENTER)
-		{
-			endIt();
-		}
+		if (FlxG.keys.pressed.ENTER) endIt();
 	}
 
 	public function endIt()

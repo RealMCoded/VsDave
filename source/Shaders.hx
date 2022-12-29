@@ -25,7 +25,7 @@ class GlitchEffect
 	public var waveAmplitude(default, set):Float = 0;
 	public var Enabled(default, set):Bool = true;
 
-	public function new():Void
+	inline public function new():Void
 	{
 		shader.uTime.value = [0];
 	}
@@ -35,28 +35,28 @@ class GlitchEffect
 		shader.uTime.value[0] += elapsed;
 	}
 
-	function set_waveSpeed(v:Float):Float
+	inline function set_waveSpeed(v:Float):Float
 	{
 		waveSpeed = v;
 		shader.uSpeed.value = [waveSpeed];
 		return v;
 	}
 
-	function set_Enabled(v:Bool):Bool
+	inline function set_Enabled(v:Bool):Bool
 	{
 		Enabled = v;
 		shader.uEnabled.value = [Enabled];
 		return v;
 	}
 
-	function set_waveFrequency(v:Float):Float
+	inline function set_waveFrequency(v:Float):Float
 	{
 		waveFrequency = v;
 		shader.uFrequency.value = [waveFrequency];
 		return v;
 	}
 
-	function set_waveAmplitude(v:Float):Float
+	inline function set_waveAmplitude(v:Float):Float
 	{
 		waveAmplitude = v;
 		shader.uWaveAmplitude.value = [waveAmplitude];
@@ -79,26 +79,26 @@ class DistortBGEffect
 		shader.uTime.value = [0];
 	}
 
-	public function update(elapsed:Float):Void
+	inline public function update(elapsed:Float):Void
 	{
 		shader.uTime.value[0] += elapsed;
 	}
 
-	function set_waveSpeed(v:Float):Float
+	inline function set_waveSpeed(v:Float):Float
 	{
 		waveSpeed = v;
 		shader.uSpeed.value = [waveSpeed];
 		return v;
 	}
 
-	function set_waveFrequency(v:Float):Float
+	inline function set_waveFrequency(v:Float):Float
 	{
 		waveFrequency = v;
 		shader.uFrequency.value = [waveFrequency];
 		return v;
 	}
 
-	function set_waveAmplitude(v:Float):Float
+	inline function set_waveAmplitude(v:Float):Float
 	{
 		waveAmplitude = v;
 		shader.uWaveAmplitude.value = [waveAmplitude];
@@ -124,33 +124,33 @@ class PulseEffect
 		shader.uEnabled.value = [false];
 	}
 
-	public function update(elapsed:Float):Void
+	inline public function update(elapsed:Float):Void
 	{
 		shader.uTime.value[0] += elapsed;
 	}
 
-	function set_waveSpeed(v:Float):Float
+	inline function set_waveSpeed(v:Float):Float
 	{
 		waveSpeed = v;
 		shader.uSpeed.value = [waveSpeed];
 		return v;
 	}
 
-	function set_Enabled(v:Bool):Bool
+	inline function set_Enabled(v:Bool):Bool
 	{
 		Enabled = v;
 		shader.uEnabled.value = [Enabled];
 		return v;
 	}
 
-	function set_waveFrequency(v:Float):Float
+	inline function set_waveFrequency(v:Float):Float
 	{
 		waveFrequency = v;
 		shader.uFrequency.value = [waveFrequency];
 		return v;
 	}
 
-	function set_waveAmplitude(v:Float):Float
+	inline function set_waveAmplitude(v:Float):Float
 	{
 		waveAmplitude = v;
 		shader.uWaveAmplitude.value = [waveAmplitude];
@@ -182,33 +182,33 @@ class BlockedGlitchEffect
 		set_hasColorTransform(colorTransform);
 	}
 
-	public function update(elapsed:Float):Void
+	inline public function update(elapsed:Float):Void
 	{
 		shader.time.value[0] += elapsed;
 	}
 
-	public function set_resolution(v:Float):Float
+	inline public function set_resolution(v:Float):Float
 	{
 		resolution = v;
 		shader.screenSize.value = [resolution];
 		return this.resolution;
 	}
 
-	function set_hasColorTransform(value:Bool):Bool
+	inline function set_hasColorTransform(value:Bool):Bool
 	{
 		this.hasColorTransform = value;
 		shader.hasColorTransform.value = [hasColorTransform];
 		return hasColorTransform;
 	}
 
-	function set_colorMultiplier(value:Float):Float
+	inline function set_colorMultiplier(value:Float):Float
 	{
 		this.colorMultiplier = value;
 		shader.colorMultiplier.value = [value];
 		return this.colorMultiplier;
 	}
 
-	function set_time(value:Float):Float
+	inline function set_time(value:Float):Float
 	{
 		this.time = value;
 		shader.time.value = [value];
@@ -221,9 +221,7 @@ class DitherEffect
 {
 	public var shader(default, null):DitherShader = new DitherShader();
 
-	public function new():Void
-	{
-	}
+	public function new():Void {}
 }
 
 class GlitchShader extends FlxShader

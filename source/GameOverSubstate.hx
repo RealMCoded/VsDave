@@ -47,7 +47,8 @@ class GameOverSubstate extends MusicBeatSubstate
 			case 'dave-fnaf' | 'bf-cool':
 				daBf = 'generic-death';
 				deathSuffix = '-generic';
-
+			case 'bf':
+				daBf = 'bf-dead';
 			default:
 				daBf = char;
 		}

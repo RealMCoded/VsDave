@@ -63,15 +63,10 @@ class CoolUtil
 		return daList;
 	}
 
-	public static function numberArray(max:Int, ?min = 0):Array<Int>
-	{
-		var dumbArray:Array<Int> = [];
-		for (i in min...max)
+	inline public static function numberArray(max:Int, ?min = 0):Array<Int>
 		{
-			dumbArray.push(i);
+			return [for(i in min...max) i];
 		}
-		return dumbArray;
-	}
 
 	public static function formatString(string:String, separator:String):String
 	{

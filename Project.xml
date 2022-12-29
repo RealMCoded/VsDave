@@ -46,9 +46,10 @@
 	<define name="SHADERS_ENABLED" unless="mac"/>
 	<define name="PRELOAD_ALL" unless="web" />
 	<define name="NO_PRELOAD_ALL" unless="PRELOAD_ALL"/>
-	
+
+	<library name="songs" preload="true" />
+
 	<section if="PRELOAD_ALL">
-		<library name="songs"    preload="true" />
 		<library name="shared"   preload="true" />
 	</section>
 	
@@ -62,7 +63,6 @@
 	<haxelib name="flixel" />
 	<haxedev set='webgl' />
 	<haxelib name="flixel-addons" />
-	<haxelib name="hscript" />
 	<haxelib name="actuate" />
 	<haxelib name="flixel-ui" />
 	<haxelib name="hxCodec" if="desktop || android" />

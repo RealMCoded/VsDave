@@ -37,27 +37,19 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-
-		if (stage != null)
-			init();
-		else
-			addEventListener(Event.ADDED_TO_STAGE, init);
+		stage != null ? init() : addEventListener(Event.ADDED_TO_STAGE, init);
 	}
 
 	private function init(?E:Event):Void
 	{
 		if (hasEventListener(Event.ADDED_TO_STAGE))
-		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-		}
 
 		setupGame();
 	}
 
 	public static function toggleFuckedFPS(toggle:Bool)
-	{
 		fps.fuckFps = toggle;
-	}
 
 	private function setupGame():Void
 	{

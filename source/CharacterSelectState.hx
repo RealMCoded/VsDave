@@ -417,14 +417,7 @@ class CharacterSelectState extends MusicBeatState
 				FlxG.sound.play(Paths.sound('badnoise1'), 0.9);
 				return;
 			}
-			if (PressedTheFunny)
-			{
-				return;
-			}
-			else
-			{
-				PressedTheFunny = true;
-			}
+			PressedTheFunny ? return : PressedTheFunny = true;
 			selectedCharacter = true;
 			var heyAnimation:Bool = char.animation.getByName("hey") != null;
 			char.playAnim(heyAnimation ? 'hey' : 'singUP', true);
