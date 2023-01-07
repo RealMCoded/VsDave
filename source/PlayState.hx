@@ -2893,9 +2893,7 @@ class PlayState extends MusicBeatState
 					timeLeftText.text = FlxStringUtil.formatTime(Math.floor(timeLeft));
 				}
 
-				//camRotateAngle += elapsed * 5 * (rotateCamToRight ? 1 : -1);
-				var rotateTime:Float = 1.15;
-				camRotateAngle = -5 * Math.cos((elapsedtime * rotateTime) + camHUD.ID * rotateTime); // troll
+				camRotateAngle += elapsed * 5 * (rotateCamToRight ? 1 : -1);
 
 				FlxG.camera.angle = camRotateAngle;
 				camHUD.angle = camRotateAngle;
