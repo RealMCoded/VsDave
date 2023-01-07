@@ -1,5 +1,3 @@
-package;
-
 import Controls.KeyboardScheme;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;
@@ -38,10 +36,7 @@ class KeybindPrefs
 			var funnyKeybinds:Map<String, Array<FlxKey>> = controlsSave.data.keybinds;
 			for (control in defaultKeybinds.keys())
 			{
-				if (!funnyKeybinds.exists(control))
-				{
-					funnyKeybinds.set(control, defaultKeybinds.get(control));
-				}
+				if (!funnyKeybinds.exists(control)) funnyKeybinds.set(control, defaultKeybinds.get(control));
 			}
 			setKeybinds(funnyKeybinds);
 		}
@@ -54,18 +49,18 @@ class KeybindPrefs
 
 	public static function setKeybinds(customControls:Map<String, Array<FlxKey>>)
 	{
-		for (controlName => key in customControls)
+		for (controlName => key in customControls) 
 		{
 			keybinds.set(controlName, key);
 		}
-		PlayerSettings.player1.controls.setKeyboardScheme(Custom);
+		PlayerSettings.controls.setKeyboardScheme(Custom);
 	}
 
 	public static function setKeybindPreset(scheme:KeyboardScheme)
 	{
-		PlayerSettings.player1.controls.setKeyboardScheme(scheme);
+		PlayerSettings.controls.setKeyboardScheme(scheme);
 
-		var controls:Controls = PlayerSettings.player1.controls;
+		var controls:Controls = PlayerSettings.controls;
 		for (control in controlNames)
 		{
 			keybinds.set(control, controls.getInputsFor(Controls.stringControlToControl(control), Controls.Device.Keys));

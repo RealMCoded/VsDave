@@ -1,8 +1,5 @@
-package;
-
 import flixel.*;
 import flixel.util.FlxColor;
-import flixel.util.FlxTimer;
 
 /**
  * shut up idiot im not bbpanzu hes a crazy!
@@ -32,7 +29,6 @@ class EndingState extends MusicBeatState
 	override public function update(elapsed:Float):Void
 	{
 		super.update(elapsed);
-
 		if (FlxG.keys.pressed.ENTER)
 		{
 			endIt();

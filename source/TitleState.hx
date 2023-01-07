@@ -1,9 +1,5 @@
-package;
-
-import haxe.Http;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.FlxState;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
 import flixel.addons.transition.FlxTransitionableState;
 import flixel.addons.transition.TransitionData;
@@ -12,7 +8,6 @@ import flixel.group.FlxGroup;
 import flixel.input.gamepad.FlxGamepad;
 import flixel.math.FlxPoint;
 import flixel.math.FlxRect;
-import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.tweens.FlxEase;
 import flixel.tweens.FlxTween;
@@ -54,9 +49,7 @@ class TitleState extends MusicBeatState
 	{
 		fun = FlxG.random.int(0, 999);
 		if (fun == 1)
-		{
 			LoadingState.loadAndSwitchState(new SusState());
-		}
 
 		PlayerSettings.init();
 

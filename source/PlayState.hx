@@ -1,5 +1,4 @@
-package; // "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
-
+// "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
 import CreditsMenuState.CreditsText;
 import TerminalCheatingState.TerminalText;
 import flixel.graphics.frames.FlxFrame;
@@ -16,12 +15,12 @@ import openfl.display.Graphics;
 import flixel.group.FlxSpriteGroup;
 import lime.tools.ApplicationData;
 import flixel.effects.particles.FlxParticle;
-import hscript.Printer;
 import openfl.desktop.Clipboard;
 import flixel.system.debug.Window;
 #if desktop
 import sys.io.File;
-import openfl.display.BitmapData;
+import openfl.display.BitmapData; 
+import sys.io.Process;
 #end
 import flixel.system.FlxBGSprite;
 import flixel.tweens.misc.ColorTween;
@@ -140,9 +139,14 @@ class PlayState extends MusicBeatState
 	public var pre3dSkin:String;
 	#if SHADERS_ENABLED
 	public static var screenshader:Shaders.PulseEffect = new PulseEffect();
-	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
+	public static var ssFilter:ShaderFilter = new ShaderFilter(screenshader.shader);
 	public static var blockedShader:BlockedGlitchEffect;
+	public static var blockedFilter:ShaderFilter;
+
 	public var dither:DitherEffect = new DitherEffect();
+	#end
+	#if (SHADERS_ENABLED || mac)
+	public static var lazychartshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 	#end
 
 	public var UsingNewCam:Bool = false;
@@ -240,10 +244,6 @@ class PlayState extends MusicBeatState
 	var notestuffs:Array<String> = ['LEFT', 'DOWN', 'UP', 'RIGHT'];
 	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
 	var fc:Bool = true;
-
-	#if SHADERS_ENABLED
-	var wiggleShit:WiggleEffect = new WiggleEffect();
-	#end
 
 	var talking:Bool = true;
 	var songScore:Int = 0;
@@ -456,20 +456,17 @@ class PlayState extends MusicBeatState
 				var textPath = programPath.substr(0, programPath.length - CoolSystemStuff.executableFileName().length) + "help me.txt";
 	
 				if (FileSystem.exists(textPath))
-				{
 					FileSystem.deleteFile(textPath);
-				}
+
 				var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
 				if (FileSystem.exists(path))
-				{
 					FileSystem.deleteFile(path);
-				}
+
 				Main.toggleFuckedFPS(true);
 
 				if (FlxG.save.data.exploitationState != null)
-				{
 					FlxG.save.data.exploitationState = 'playing';
-				}
+
 				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
@@ -516,17 +513,10 @@ class PlayState extends MusicBeatState
 				iconRPC = 'both';
 		}
 
-		if (isStoryMode)
-		{
-			detailsText = "Story Mode: Week " + storyWeek;
-		}
-		else
-		{
-			detailsText = "Freeplay Mode: ";
-		}
+		isStoryMode ? detailsText = 'Story Mode: Week $storyWeek' : detailsText = 'Freeplay Mode: ';
 
 		// String for when the game is paused
-		detailsPausedText = "Paused - " + detailsText;
+		detailsPausedText = 'Paused - $detailsText';
 
 
 		curStage = "";
@@ -628,52 +618,31 @@ class PlayState extends MusicBeatState
 
 		if(SONG.stage == null)
 		{
-			switch(SONG.song.toLowerCase())
+			stageCheck = switch(SONG.song.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'supernovae' | 'warmup':
-					stageCheck = 'house';
-				case 'polygonized':
-					stageCheck = 'red-void';
-				case 'bonus-song':
-					stageCheck = 'inside-house';
-				case 'blocked' | 'corn-theft' | 'maze':
-					stageCheck = 'farm';
-				case 'indignancy':
-					stageCheck = 'farm-night';
-				case 'splitathon' | 'mealie':
-					stageCheck = 'farm-night';
-				case 'shredder' | 'greetings':
-					stageCheck = 'festival';
-				case 'interdimensional':
-					stageCheck = 'interdimension-void';
-				case 'rano':
-					stageCheck = 'backyard';
-				case 'cheating':
-					stageCheck = 'green-void';
-				case 'unfairness':
-					stageCheck = 'glitchy-void';
-				case 'exploitation':
-					stageCheck = 'desktop';
-				case 'kabunga':
-					stageCheck = 'exbungo-land';
-				case 'glitch' | 'memory':
-					stageCheck = 'house-night';
-				case 'secret':
-					stageCheck = 'house-sunset';
-				case 'vs-dave-rap' | 'vs-dave-rap-two':
-					stageCheck = 'rapBattle';
-				case 'recursed':
-					stageCheck = 'freeplay';
-				case 'roofs':
-					stageCheck = 'roof';
-				case 'bot-trot':
-					stageCheck = 'bedroom';
-				case 'escape-from-california':
-					stageCheck = 'desert';
-				case 'master':
-					stageCheck = 'master';
-				case 'overdrive':
-					stageCheck = 'overdrive';
+				case 'house' | 'insanity' | 'supernovae' | 'warmup': 'house';
+				case 'polygonized': 'red-void';
+				case 'bonus-song': 'inside-house';
+				case 'blocked' | 'corn-theft' | 'maze': 'farm';
+				case 'indignancy': 'farm-night';
+				case 'splitathon' | 'mealie': 'farm-night';
+				case 'shredder' | 'greetings': 'festival';
+				case 'interdimensional': 'interdimension-void';
+				case 'rano': 'backyard';
+				case 'cheating': 'green-void';
+				case 'unfairness': 'glitchy-void';
+				case 'exploitation': 'desktop';
+				case 'kabunga': 'exbungo-land';
+				case 'glitch' | 'memory': 'house-night';
+				case 'secret': 'house-sunset';
+				case 'vs-dave-rap' | 'vs-dave-rap-two': 'rapBattle';
+				case 'recursed': 'freeplay';
+				case 'roofs': 'roof';
+				case 'bot-trot': 'bedroom';
+				case 'escape-from-california': 'desert';
+				case 'master': 'master';
+				case 'overdrive': 'overdrive';
+				default: '';
 			}
 		}
 		else
@@ -1065,10 +1034,7 @@ class PlayState extends MusicBeatState
 
 		//char repositioning
 		repositionChar(dad);
-		if (dadmirror != null)
-		{
-			repositionChar(dadmirror);
-		}
+		if (dadmirror != null) repositionChar(dadmirror);
 		repositionChar(boyfriend);
 		repositionChar(gf);
 
@@ -1105,10 +1071,7 @@ class PlayState extends MusicBeatState
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5 * fontScaler;
 			songName.antialiasing = true;
-			if (barType == 'ShowTime')
-			{
-				songName.alpha = 0;
-			}
+			if (barType == 'ShowTime') songName.alpha = 0;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
 			var yValues = CoolUtil.getMinAndMax(songName.height, songPosBG.height);
@@ -1275,18 +1238,12 @@ class PlayState extends MusicBeatState
 			case 'recursed':
 				switch (boyfriend.curCharacter)
 				{
-					case 'dave':
-						preload('recursed/characters/Dave_Recursed');
-					case 'bambi-new':
-						preload('recursed/characters/Bambi_Recursed');
-					case 'tb-funny-man':
-						preload('recursed/characters/STOP_LOOKING_AT_THE_FILES');
-					case 'tristan' | 'tristan-golden':
-						preload('recursed/characters/TristanRecursed');
-					case 'dave-angey':
-						preload('recursed/characters/Dave_3D_Recursed');
-					default:
-						preload('recursed/Recursed_BF');
+					case 'dave': preload('recursed/characters/Dave_Recursed');
+					case 'bambi-new': preload('recursed/characters/Bambi_Recursed');
+					case 'tb-funny-man': preload('recursed/characters/STOP_LOOKING_AT_THE_FILES');
+					case 'tristan' | 'tristan-golden': preload('recursed/characters/TristanRecursed');
+					case 'dave-angey': preload('recursed/characters/Dave_3D_Recursed');
+					default: preload('recursed/Recursed_BF');
 				}
 			case 'exploitation':
 				preload('ui/glitch/glitchSwitch');
@@ -1346,9 +1303,10 @@ class PlayState extends MusicBeatState
 			kadeEngineWatermark.cameras = [camHUD];
 		}
 		doof.cameras = [camDialogue];
-		
-		#if SHADERS_ENABLED
-		if (SONG.song.toLowerCase() == 'kabunga' || localFunny == CharacterFunnyEffect.Exbungo) //i desperately wanted it so if you use downscroll it switches it to upscroll and flips the entire hud upside down but i never got to it
+    
+		#if (SHADERS_ENABLED || mac)
+		if (SONG.song.toLowerCase() == 'kabunga'
+			|| localFunny == CharacterFunnyEffect.Exbungo) // i desperately wanted it so if you use downscroll it switches it to upscroll and flips the entire hud upside down but i never got to it
 		{
 			lazychartshader.waveAmplitude = 0.03;
 			lazychartshader.waveFrequency = 5;
@@ -1356,6 +1314,8 @@ class PlayState extends MusicBeatState
 
 			camHUD.setFilters([new ShaderFilter(lazychartshader.shader)]);
 		}
+		#end
+		#if SHADERS_ENABLED
 		if (SONG.song.toLowerCase() == 'blocked' || SONG.song.toLowerCase() == 'shredder')
 		{
 			blockedShader = new BlockedGlitchEffect(1280, 1, 1, true);
@@ -1834,7 +1794,7 @@ class PlayState extends MusicBeatState
 				freeplayBG.color = FlxColor.multiply(0xFF4965FF, FlxColor.fromRGB(44, 44, 44));
 				freeplayBG.alpha = 0;
 				add(freeplayBG);
-				
+
 				charBackdrop = new FlxBackdrop(Paths.image('recursed/daveScroll'), 1, 1, true, true);
 				charBackdrop.antialiasing = true;
 				charBackdrop.scale.set(2, 2);
@@ -2032,7 +1992,7 @@ class PlayState extends MusicBeatState
 
 	function voidShader(background:BGSprite)
 	{
-		#if SHADERS_ENABLED
+		#if (SHADERS_ENABLED || mac)
 		var testshader:Shaders.GlitchEffect = new Shaders.GlitchEffect();
 		testshader.waveAmplitude = 0.1;
 		testshader.waveFrequency = 5;
@@ -2827,7 +2787,7 @@ class PlayState extends MusicBeatState
 		{
 			if (curbg.active) // only the polygonized background is active
 			{
-				#if SHADERS_ENABLED
+				#if (SHADERS_ENABLED || mac)
 				var shad = cast(curbg.shader, Shaders.GlitchShader);
 				shad.uTime.value[0] += elapsed;
 				#end
@@ -3315,11 +3275,6 @@ class PlayState extends MusicBeatState
 
 		#if SHADERS_ENABLED
 		screenshader.shader.uTime.value[0] += elapsed;
-		lazychartshader.shader.uTime.value[0] += elapsed;
-		if (blockedShader != null)
-		{
-			blockedShader.update(elapsed);
-		}
 		if (shakeCam && eyesoreson)
 		{
 			screenshader.shader.uampmul.value[0] = 1;
@@ -3329,6 +3284,15 @@ class PlayState extends MusicBeatState
 			screenshader.shader.uampmul.value[0] -= (elapsed / 2);
 		}
 		screenshader.Enabled = shakeCam && eyesoreson;
+		#end
+		#if (SHADERS_ENABLED || mac)
+		lazychartshader.shader.uTime.value[0] += elapsed;
+		#end
+		#if SHADERS_ENABLED
+		if (blockedShader != null)
+		{
+			blockedShader.update(elapsed);
+		}
 		#end
 
 		super.update(elapsed);
@@ -4903,19 +4867,9 @@ class PlayState extends MusicBeatState
 	{
 		if (true)
 		{
-			misses++;	
-			if (inFiveNights)
-			{
-				health -= 0.004;
-			}
-			else
-			{
-				health -= 0.04;
-			}
-			if (combo > 5)
-			{
-				gf.playAnim('sad');
-			}
+			misses++;
+			inFiveNights ? health -= 0.004 : health -= 0.04;
+			if (combo > 5) gf.playAnim('sad');
 			combo = 0;
 			songScore -= 100;
 
@@ -6912,11 +6866,6 @@ class PlayState extends MusicBeatState
 					}
 			}
 		}
-
-		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
-		#if SHADERS_ENABLED
-		wiggleShit.update(Conductor.crochet);
-		#end
 		
 		if (curBeat % gfSpeed == 0)
 		{
@@ -7410,14 +7359,7 @@ class PlayState extends MusicBeatState
 
 	function eatShit(ass:String):Void
 	{
-		if (dialogue[0] == null)
-		{
-			trace(ass);
-		}
-		else
-		{
-			trace(dialogue[0]);
-		}
+		dialogue[0] == null ? trace(ass) : trace(dialogue[0]);
 	}
 
 	public function addSplitathonChar(char:String):Void

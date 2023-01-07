@@ -1,11 +1,6 @@
-package;
-
 // crazy system shit!!!!!
 // lordryan wrote this :) (erizur added cross platform env vars)
 import sys.io.File;
-import sys.io.Process;
-import haxe.io.Bytes;
-
 class CoolSystemStuff
 {
 	public static function getUsername():String

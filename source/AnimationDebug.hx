@@ -1,5 +1,3 @@
-package;
-
 import flixel.ui.FlxButton;
 import openfl.net.FileReference;
 import openfl.display.TriangleCulling;
@@ -12,8 +10,6 @@ import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import openfl.events.Event;
-import openfl.events.IOErrorEvent;
-import openfl.events.IOErrorEvent;
 import openfl.events.IOErrorEvent;
 
 /**

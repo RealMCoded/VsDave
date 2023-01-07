@@ -1,16 +1,8 @@
-package;
-
-import flixel.math.FlxMath;
-import flixel.tweens.misc.ColorTween;
 import flixel.addons.display.FlxBackdrop;
-import flixel.FlxSprite;
-import flixel.tweens.FlxTween;
 import flixel.util.FlxColor;
 import flixel.FlxG;
 import flixel.text.FlxText;
 import flixel.effects.FlxFlicker;
-import flixel.util.FlxSave;
-import flixel.util.FlxAxes;
 
 class CompatWarningState extends MusicBeatState
 {
@@ -28,7 +20,7 @@ class CompatWarningState extends MusicBeatState
 
 	public override function create():Void
 	{
-		bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), #if (flixel < "5.0.0") 1, 1, true, true, #else XY, #end 1, 1);
+		bg = new FlxBackdrop(Paths.image('ui/checkeredBG', 'preload'), 1, 1, true, true, 1, 1);
 		bg.antialiasing = true;
 		add(bg);
 

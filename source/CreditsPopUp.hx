@@ -1,13 +1,7 @@
-package;
-
-import sys.FileSystem;
 import flixel.group.FlxSpriteGroup;
-import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;
-import flixel.FlxObject;
 import flixel.text.FlxText;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
-import flixel.math.FlxMath;
 
 typedef SongHeading =
 {

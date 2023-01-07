@@ -1,5 +1,3 @@
-package;
-
 import Controls.KeyboardScheme;
 import flixel.input.actions.FlxActionInput;
 import flixel.addons.display.FlxShaderMaskCamera;
@@ -216,7 +214,7 @@ class ChangeKeybinds extends MusicBeatState
 						}
 
 						KeybindPrefs.keybinds.set(currentUIControl.controlName, controlKeybinds);
-						PlayerSettings.player1.controls.setKeyboardScheme(Custom);
+						PlayerSettings.controls.setKeyboardScheme(Custom);
 
 						FlxG.sound.play(Paths.sound('confirmMenu'));
 
