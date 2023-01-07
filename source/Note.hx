@@ -17,6 +17,9 @@ class Note extends FlxSprite
 	public var prevNote:Note;
 	public var LocalScrollSpeed:Float = 1;
 
+	public var tail:Array<Note> = []; // for sustains
+	public var parent:Note;
+
 	public var sustainLength:Float = 0;
 	public var isSustainNote:Bool = false;
 

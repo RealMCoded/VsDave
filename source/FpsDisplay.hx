@@ -91,11 +91,11 @@ class FpsDisplay extends TextField
 			if (memoryMegas > 1000)
 			{
 				var memoryGB = (memoryMegas / 1000);
-				text += "\nMemory: " + FlxMath.roundDecimal(memoryGB, 2) + " GB";
+				text += "\nMemory:\n" + FlxMath.roundDecimal(memoryGB, 2) + " GB";
 			}
 			else
 			{
-				text += "\nMemory: " + memoryMegas + " MB";
+				text += "\nMemory:\n" + memoryMegas + " MB";
 			}
 			#end
 			#if (gl_stats && !disable_cffi && (!html5 || !canvas))

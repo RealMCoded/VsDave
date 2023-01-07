@@ -164,7 +164,7 @@ class Character extends FlxSprite
 
 				globalOffset = [196, 160];
 
-				barColor = FlxColor.fromRGB(49, 176, 209);
+				barColor = FlxColor.fromRGB(123, 214, 248);
 
 				setGraphicSize(Std.int(width * PlayState.daPixelZoom));
 				updateHitbox();

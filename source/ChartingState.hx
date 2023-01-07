@@ -1084,11 +1084,11 @@ class ChartingState extends MusicBeatState
 
 	function changeSection(sec:Int = 0, ?updateMusic:Bool = true):Void
 	{
-		trace('changing section' + sec);
+		//trace('changing section' + sec);
 
 		if (_song.notes[sec] != null)
 		{
-			trace('naw im not null');
+			//trace('naw im not null');
 			curSection = sec;
 
 			updateGrid();
