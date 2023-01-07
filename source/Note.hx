@@ -1,21 +1,8 @@
-package;
-
-import flixel.input.keyboard.FlxKey;
-import flixel.FlxObject;
-import Controls.Device;
-import flixel.text.FlxText;
 import flixel.math.FlxRandom;
-import flixel.addons.effects.FlxSkewedSprite;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.graphics.frames.FlxAtlasFrames;
-import flixel.math.FlxMath;
-import flixel.util.FlxColor;
 import PlayState;
-
 using StringTools;
-
-import StringTools;
 
 class Note extends FlxSprite
 {

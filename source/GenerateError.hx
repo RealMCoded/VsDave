@@ -1,5 +1,3 @@
-package;
-
 import flixel.FlxSprite;
 
 class GenerateError extends MusicBeatState

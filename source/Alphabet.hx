@@ -1,9 +1,6 @@
-package;
-
 import Shaders.InvertShader;
 import flixel.FlxG;
 import flixel.FlxSprite;
-import flixel.graphics.frames.FlxAtlasFrames;
 import flixel.group.FlxSpriteGroup;
 import flixel.math.FlxMath;
 import flixel.util.FlxTimer;
@@ -61,16 +58,7 @@ class Alphabet extends FlxSpriteGroup
 		isBold = bold;
 
 		if (text != "")
-		{
-			if (typed)
-			{
-				startTypedText();
-			}
-			else
-			{
-				addText();
-			}
-		}
+			typed ? startTypedText() : addText();
 	}
 
 	public function addText()
@@ -85,33 +73,21 @@ class Alphabet extends FlxSpriteGroup
 			// }
 
 			if (character == " " || character == "-")
-			{
 				lastWasSpace = true;
-			}
 
 			if (AlphaCharacter.alphabet.indexOf(character.toLowerCase()) != -1)
 				// if (AlphaCharacter.alphabet.contains(character.toLowerCase()))
 			{
 				if (lastSprite != null)
-				{
 					xPos = lastSprite.x + lastSprite.width;
-				}
 
 				if (lastWasSpace)
-				{
 					xPos += 40;
 					lastWasSpace = false;
-				}
 
 				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 0);
-
-				if (isBold)
-					letter.createBoldLetter(character);
-				else
-				{
-					letter.createLetter(character);
-				}
+				isBold ? letter.createBoldLetter(character) : letter.createLetter(character);
 
 				characters.push(letter);
 				add(letter);
@@ -123,7 +99,7 @@ class Alphabet extends FlxSpriteGroup
 		}
 	}
 
-	function doSplitWords():Void
+	inline function doSplitWords():Void
 	{
 		splitWords = _finalText.split("");
 	}
@@ -153,10 +129,7 @@ class Alphabet extends FlxSpriteGroup
 				curRow += 1;
 			}
 
-			if (splitWords[loopNum] == " ")
-			{
-				lastWasSpace = true;
-			}
+			if (splitWords[loopNum] == " ") lastWasSpace = true;
 
 			#if (haxe >= "4.0.0")
 			var isNumber:Bool = AlphaCharacter.numbers.contains(splitWords[loopNum]);
@@ -178,59 +151,31 @@ class Alphabet extends FlxSpriteGroup
 					// xPos -= 80;
 				}
 				else
-				{
 					xPosResetted = false;
-				}
 
 				if (lastWasSpace)
 				{
 					xPos += 20;
 					lastWasSpace = false;
 				}
-				// trace(_finalText.fastCodeAt(loopNum) + " " + _finalText.charAt(loopNum));
-
-				// var letter:AlphaCharacter = new AlphaCharacter(30 * loopNum, 0);
 				var letter:AlphaCharacter = new AlphaCharacter(xPos, 55 * yMulti);
 				letter.row = curRow;
 				var character = splitWords[loopNum];
 				if (isBold)
 				{
-					if (isNumber)
-					{
-						letter.createBoldNumber(character);
-					}
-					else if (isSymbol)
-					{
-						letter.createBoldSymbol(character);
-					}
-					else
-					{
-						letter.createBoldLetter(character);
-					}
+					if (isNumber) letter.createBoldNumber(character);
+					else if (isSymbol) letter.createBoldSymbol(character);
+					else letter.createBoldLetter(character);
 				}
 				else
 				{
-					if (isNumber)
-					{
-						letter.createNumber(character);
-					}
-					else if (isSymbol)
-					{
-						letter.createSymbol(character);
-					}
-					else
-					{
-						letter.createLetter(character);
-					}
-
+					if (isNumber) letter.createNumber(character);
+					else if (isSymbol) letter.createSymbol(character);
+					else letter.createLetter(character);
 					letter.x += 90;
 				}
 
-				if (FlxG.random.bool(40))
-				{
-					var daSound:String = "GF_";
-					FlxG.sound.play(Paths.soundRandom(daSound, 1, 4));
-				}
+				if (FlxG.random.bool(40)) FlxG.sound.play(Paths.soundRandom("GF_", 1, 4));
 
 				characters.push(letter);
 				add(letter);

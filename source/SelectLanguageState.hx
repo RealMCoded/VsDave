@@ -1,5 +1,3 @@
-package;
-
 import flixel.math.FlxMath;
 import flixel.tweens.misc.ColorTween;
 import flixel.addons.display.FlxBackdrop;

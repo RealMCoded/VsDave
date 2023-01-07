@@ -1,5 +1,3 @@
-package;
-
 typedef SwagSection =
 {
 	var sectionNotes:Array<Dynamic>;

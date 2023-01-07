@@ -1,10 +1,4 @@
-package;
-
-import flixel.group.FlxGroup;
-import flixel.FlxG;
-import openfl.utils.AssetCache;
 import flixel.math.FlxRandom;
-import flixel.math.FlxMath;
 import lime.utils.Assets;
 
 using StringTools;
@@ -63,15 +57,10 @@ class CoolUtil
 		return daList;
 	}
 
-	public static function numberArray(max:Int, ?min = 0):Array<Int>
-	{
-		var dumbArray:Array<Int> = [];
-		for (i in min...max)
+	inline public static function numberArray(max:Int, ?min = 0):Array<Int>
 		{
-			dumbArray.push(i);
+			return [for(i in min...max) i];
 		}
-		return dumbArray;
-	}
 
 	public static function formatString(string:String, separator:String):String
 	{

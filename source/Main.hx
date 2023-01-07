@@ -1,15 +1,9 @@
-package;
-
 import openfl.text.TextFormat;
 import flixel.FlxGame;
 import flixel.FlxState;
-import openfl.Assets;
 import openfl.Lib;
-import openfl.display.FPS;
 import openfl.display.Sprite;
 import openfl.events.Event;
-import flixel.system.FlxSound;
-import flixel.FlxG;
 
 class Main extends Sprite
 {
@@ -37,27 +31,19 @@ class Main extends Sprite
 	public function new()
 	{
 		super();
-
-		if (stage != null)
-			init();
-		else
-			addEventListener(Event.ADDED_TO_STAGE, init);
+		stage != null ? init() : addEventListener(Event.ADDED_TO_STAGE, init);
 	}
 
 	private function init(?E:Event):Void
 	{
 		if (hasEventListener(Event.ADDED_TO_STAGE))
-		{
 			removeEventListener(Event.ADDED_TO_STAGE, init);
-		}
 
 		setupGame();
 	}
 
 	public static function toggleFuckedFPS(toggle:Bool)
-	{
 		fps.fuckFps = toggle;
-	}
 
 	private function setupGame():Void
 	{

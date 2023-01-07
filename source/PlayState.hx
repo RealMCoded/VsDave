@@ -1,5 +1,4 @@
-package; // "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
-
+// "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
 import CreditsMenuState.CreditsText;
 import TerminalCheatingState.TerminalText;
 import flixel.graphics.frames.FlxFrame;
@@ -16,7 +15,6 @@ import openfl.display.Graphics;
 import flixel.group.FlxSpriteGroup;
 import lime.tools.ApplicationData;
 import flixel.effects.particles.FlxParticle;
-import hscript.Printer;
 import openfl.desktop.Clipboard;
 import flixel.system.debug.Window;
 #if desktop
@@ -247,10 +245,6 @@ class PlayState extends MusicBeatState
 	var notestuffsGuitar:Array<String> = ['LEFT', 'DOWN', 'MIDDLE', 'UP', 'RIGHT'];
 	var fc:Bool = true;
 
-	#if SHADERS_ENABLED
-	var wiggleShit:WiggleEffect = new WiggleEffect();
-	#end
-
 	var talking:Bool = true;
 	var songScore:Int = 0;
 
@@ -465,20 +459,17 @@ class PlayState extends MusicBeatState
 				var textPath = programPath.substr(0, programPath.length - CoolSystemStuff.executableFileName().length) + "help me.txt";
 	
 				if (FileSystem.exists(textPath))
-				{
 					FileSystem.deleteFile(textPath);
-				}
+
 				var path = CoolSystemStuff.getTempPath() + "/Null.vbs";
 				if (FileSystem.exists(path))
-				{
 					FileSystem.deleteFile(path);
-				}
+
 				Main.toggleFuckedFPS(true);
 
 				if (FlxG.save.data.exploitationState != null)
-				{
 					FlxG.save.data.exploitationState = 'playing';
-				}
+
 				FlxG.save.data.terminalFound = true;
 				FlxG.save.flush();
 				modchart = ExploitationModchartType.None;
@@ -525,17 +516,10 @@ class PlayState extends MusicBeatState
 				iconRPC = 'both';
 		}
 
-		if (isStoryMode)
-		{
-			detailsText = "Story Mode: Week " + storyWeek;
-		}
-		else
-		{
-			detailsText = "Freeplay Mode: ";
-		}
+		isStoryMode ? detailsText = 'Story Mode: Week $storyWeek' : detailsText = 'Freeplay Mode: ';
 
 		// String for when the game is paused
-		detailsPausedText = "Paused - " + detailsText;
+		detailsPausedText = 'Paused - $detailsText';
 
 
 		curStage = "";
@@ -639,50 +623,28 @@ class PlayState extends MusicBeatState
 		{
 			switch(SONG.song.toLowerCase())
 			{
-				case 'house' | 'insanity' | 'supernovae' | 'warmup':
-					stageCheck = 'house';
-				case 'polygonized':
-					stageCheck = 'red-void';
-				case 'bonus-song':
-					stageCheck = 'inside-house';
-				case 'blocked' | 'corn-theft' | 'maze':
-					stageCheck = 'farm';
-				case 'indignancy':
-					stageCheck = 'farm-night';
-				case 'splitathon' | 'mealie' | 'shredder':
-					stageCheck = 'farm-night';
-				case 'shredder' | 'greetings':
-					stageCheck = 'festival';
-				case 'interdimensional':
-					stageCheck = 'interdimension-void';
-				case 'rano':
-					stageCheck = 'backyard';
-				case 'cheating':
-					stageCheck = 'green-void';
-				case 'unfairness':
-					stageCheck = 'glitchy-void';
-				case 'exploitation':
-					stageCheck = 'desktop';
-				case 'kabunga':
-					stageCheck = 'exbungo-land';
-				case 'glitch' | 'memory':
-					stageCheck = 'house-night';
-				case 'secret':
-					stageCheck = 'house-sunset';
-				case 'vs-dave-rap' | 'vs-dave-rap-two':
-					stageCheck = 'rapBattle';
-				case 'recursed':
-					stageCheck = 'freeplay';
-				case 'roofs':
-					stageCheck = 'roof';
-				case 'bot-trot':
-					stageCheck = 'bedroom';
-				case 'escape-from-california':
-					stageCheck = 'desert';
-				case 'master':
-					stageCheck = 'master';
-				case 'overdrive':
-					stageCheck = 'overdrive';
+				case 'house' | 'insanity' | 'supernovae' | 'warmup': stageCheck = 'house';
+				case 'polygonized': stageCheck = 'red-void';
+				case 'bonus-song': stageCheck = 'inside-house';
+				case 'blocked' | 'corn-theft' | 'maze': stageCheck = 'farm';
+				case 'indignancy': stageCheck = 'farm-night';
+				case 'splitathon' | 'mealie': stageCheck = 'farm-night';
+				case 'shredder' | 'greetings': stageCheck = 'festival';
+				case 'interdimensional': stageCheck = 'interdimension-void';
+				case 'rano': stageCheck = 'backyard';
+				case 'cheating': stageCheck = 'green-void';
+				case 'unfairness': stageCheck = 'glitchy-void';
+				case 'exploitation': stageCheck = 'desktop';
+				case 'kabunga': stageCheck = 'exbungo-land';
+				case 'glitch' | 'memory': stageCheck = 'house-night';
+				case 'secret': stageCheck = 'house-sunset';
+				case 'vs-dave-rap' | 'vs-dave-rap-two': stageCheck = 'rapBattle';
+				case 'recursed': stageCheck = 'freeplay';
+				case 'roofs': stageCheck = 'roof';
+				case 'bot-trot': stageCheck = 'bedroom';
+				case 'escape-from-california': stageCheck = 'desert';
+				case 'master': stageCheck = 'master';
+				case 'overdrive': stageCheck = 'overdrive';
 			}
 		}
 		else
@@ -1074,10 +1036,7 @@ class PlayState extends MusicBeatState
 
 		//char repositioning
 		repositionChar(dad);
-		if (dadmirror != null)
-		{
-			repositionChar(dadmirror);
-		}
+		if (dadmirror != null) repositionChar(dadmirror);
 		repositionChar(boyfriend);
 		repositionChar(gf);
 
@@ -1114,10 +1073,7 @@ class PlayState extends MusicBeatState
 			songName.scrollFactor.set();
 			songName.borderSize = 2.5 * fontScaler;
 			songName.antialiasing = true;
-			if (barType == 'ShowTime')
-			{
-				songName.alpha = 0;
-			}
+			if (barType == 'ShowTime') songName.alpha = 0;
 
 			var xValues = CoolUtil.getMinAndMax(songName.width, songPosBG.width);
 			var yValues = CoolUtil.getMinAndMax(songName.height, songPosBG.height);
@@ -1284,18 +1240,12 @@ class PlayState extends MusicBeatState
 			case 'recursed':
 				switch (boyfriend.curCharacter)
 				{
-					case 'dave':
-						preload('recursed/characters/Dave_Recursed');
-					case 'bambi-new':
-						preload('recursed/characters/Bambi_Recursed');
-					case 'tb-funny-man':
-						preload('recursed/characters/STOP_LOOKING_AT_THE_FILES');
-					case 'tristan' | 'tristan-golden':
-						preload('recursed/characters/TristanRecursed');
-					case 'dave-angey':
-						preload('recursed/characters/Dave_3D_Recursed');
-					default:
-						preload('recursed/Recursed_BF');
+					case 'dave': preload('recursed/characters/Dave_Recursed');
+					case 'bambi-new': preload('recursed/characters/Bambi_Recursed');
+					case 'tb-funny-man': preload('recursed/characters/STOP_LOOKING_AT_THE_FILES');
+					case 'tristan' | 'tristan-golden': preload('recursed/characters/TristanRecursed');
+					case 'dave-angey': preload('recursed/characters/Dave_3D_Recursed');
+					default: preload('recursed/Recursed_BF');
 				}
 			case 'exploitation':
 				preload('ui/glitch/glitchSwitch');
@@ -4925,19 +4875,9 @@ class PlayState extends MusicBeatState
 	{
 		if (true)
 		{
-			misses++;	
-			if (inFiveNights)
-			{
-				health -= 0.004;
-			}
-			else
-			{
-				health -= 0.04;
-			}
-			if (combo > 5)
-			{
-				gf.playAnim('sad');
-			}
+			misses++;
+			inFiveNights ? health -= 0.004 : health -= 0.04;
+			if (combo > 5) gf.playAnim('sad');
 			combo = 0;
 			songScore -= 100;
 
@@ -6940,11 +6880,6 @@ class PlayState extends MusicBeatState
 					}
 			}
 		}
-
-		// FlxG.log.add('change bpm' + SONG.notes[Std.int(curStep / 16)].changeBPM);
-		#if SHADERS_ENABLED
-		wiggleShit.update(Conductor.crochet);
-		#end
 		
 		if (curBeat % gfSpeed == 0)
 		{
@@ -7438,14 +7373,7 @@ class PlayState extends MusicBeatState
 
 	function eatShit(ass:String):Void
 	{
-		if (dialogue[0] == null)
-		{
-			trace(ass);
-		}
-		else
-		{
-			trace(dialogue[0]);
-		}
+		dialogue[0] == null ? trace(ass) : trace(dialogue[0]);
 	}
 
 	public function addSplitathonChar(char:String):Void
