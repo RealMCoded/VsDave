@@ -1,3 +1,5 @@
+package;
+
 import flixel.system.FlxSound;
 import Controls.Device;
 import Controls.Control;

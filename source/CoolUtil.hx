@@ -1,3 +1,5 @@
+package;
+
 import flixel.math.FlxRandom;
 import lime.utils.Assets;
 

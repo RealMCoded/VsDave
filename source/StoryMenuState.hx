@@ -1,3 +1,5 @@
+package;
+
 import flixel.addons.effects.chainable.FlxEffectSprite;
 import flixel.addons.effects.chainable.FlxGlitchEffect;
 import flixel.addons.effects.chainable.FlxGlitchEffect.FlxGlitchDirection;

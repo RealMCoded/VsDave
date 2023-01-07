@@ -1,3 +1,5 @@
+package;
+
 import flixel.system.FlxSound;
 import flixel.text.FlxText;
 import flixel.FlxSprite;

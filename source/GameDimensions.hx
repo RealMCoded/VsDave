@@ -1,3 +1,5 @@
+package;
+
 class GameDimensions
 {
 	public static var width:Int = 1280;

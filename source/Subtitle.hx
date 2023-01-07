@@ -1,3 +1,5 @@
+package;
+
 import flixel.util.FlxAxes;
 import flixel.system.FlxSound;
 import flixel.tweens.FlxTween;

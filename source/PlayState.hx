@@ -1,3 +1,5 @@
+package;
+
 // "Most hard-coded FNF mod ever!!!!!!!!!!" - p0kk0 on GameBanana(https://gamebanana.com/mods/43201?post=10328553)
 import CreditsMenuState.CreditsText;
 import TerminalCheatingState.TerminalText;

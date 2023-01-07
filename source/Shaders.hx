@@ -1,7 +1,9 @@
+package;
+
 import flixel.system.FlxAssets.FlxShader;
 
 /*  VS DAVE AND BAMBI SHADERS IMPLEMENTATION
-	ALL OF THIS CODE WAS WROTE BY MTM101, ERIZUR AND T5MPLER (BUGFIXES)
+	ALL OF THIS CODE WAS WRITTEN BY MTM101, ERIZUR AND T5MPLER (BUGFIXES)
 
 	If you see a SHADERS_ENABLED flag here is because of the following reason:
 		Apple deprecated OpenGL support back in 2018, leaving it on version 4.1

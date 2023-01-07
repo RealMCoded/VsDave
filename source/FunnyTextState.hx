@@ -1,3 +1,5 @@
+package;
+
 import flixel.group.FlxGroup.FlxTypedGroup;
 import flixel.math.FlxRandom;
 import flixel.input.keyboard.FlxKey;

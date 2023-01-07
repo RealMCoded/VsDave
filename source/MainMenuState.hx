@@ -1,3 +1,5 @@
+package;
+
 import flixel.addons.ui.FlxInputText;
 import flixel.group.FlxSpriteGroup;
 import flixel.group.FlxSpriteGroup.FlxTypedSpriteGroup;

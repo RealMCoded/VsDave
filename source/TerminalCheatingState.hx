@@ -1,3 +1,5 @@
+package;
+
 import flixel.tweens.FlxTween;
 import flixel.util.FlxTimer;
 import flixel.text.FlxText.FlxTextAlign;

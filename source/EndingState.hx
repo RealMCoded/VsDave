@@ -1,3 +1,5 @@
+package;
+
 import flixel.*;
 import flixel.util.FlxColor;
 

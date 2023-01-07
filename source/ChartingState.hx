@@ -1,3 +1,5 @@
+package;
+
 import openfl.system.System;
 import sys.io.File;
 import sys.FileSystem;

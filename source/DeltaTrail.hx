@@ -1,3 +1,5 @@
+package;
+
 import flixel.addons.effects.FlxTrail;
 import flixel.FlxSprite;
 import flixel.system.FlxAssets;
