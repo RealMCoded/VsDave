@@ -128,15 +128,11 @@ class Character extends FlxSprite
 				for (anim in ['left', 'down', 'up', 'right'])
 				{
 					animation.addByPrefix('sing${anim.toUpperCase()}', anim, 24, false);
-					animation.addByPrefix('sing${anim.toUpperCase()}miss', 'miss $anim', 24, false);
 				}
 				animation.addByPrefix('hey', 'hey', 24, false);
 
-				// animation.addByIndices('attack', 'jumpscare', CoolUtil.numberArray(23, 0), '', 24, false);
-				// animation.addByIndices('fail', 'jumpscare', CoolUtil.numberArray(44, 24), '', 24, false);
-
-				animation.addByPrefix('jumpscare', 'jumpscare', 24, false);
-				trace(animation.getByName('jumpscare').frames);
+				animation.addByIndices('attack', 'jumpscare', CoolUtil.numberArray(23, 0), '', 24, false);
+				animation.addByIndices('fail', 'jumpscare', CoolUtil.numberArray(44, 24), '', 24, false);
 
 				loadOffsetFile(curCharacter);
 

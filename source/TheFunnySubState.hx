@@ -22,29 +22,39 @@ class TheFunnySubState extends MusicBeatSubstate
 	public function new(char:String)
 	{
 		super();
+		
 		var daBf:String = '';
 		switch (char)
 		{
 			case 'bf-pixel':
 				daBf = "bf-pixel-dead";
 				deathSuffix = '-pixel';
-			case 'dave' | 'dave-recursed' | 'dave-fnaf':
+			case 'tb-funny-man':
+				FlxG.openURL("https://www.youtube.com/watch?v=paS2p60AEUY");
+				System.exit(0);
+			case 'dave' | 'dave-recursed' | 'dave-angey':
+				daBf = 'dave-death';
 				deathSuffix = '-dave';
-			case 'tristan':
+			case 'tristan' | 'tristan-recursed':
+				daBf = 'tristan-death';
 				deathSuffix = '-tristan';
 			case 'tristan-golden':
+				daBf = 'tristan-golden-death';
 				deathSuffix = '-tristan';
 			case 'bambi-new' | 'bambi-recursed':
 				daBf = 'bambi-death';
 				deathSuffix = '-bambi';
 			case 'nofriend':
+				daBf = 'nofriend-death';
 				deathSuffix = '-nofriend';
+			case 'dave-fnaf' | 'bf-cool':
+				daBf = 'generic-death';
+				deathSuffix = '-generic';
 
 			default:
 				daBf = char;
 		}
-
-		var loseSound = FlxG.sound.play(Paths.sound('fnf_loss_sfx' + deathSuffix));
+		var loseSound = FlxG.sound.play(Paths.sound('death/fnf_loss_sfx' + deathSuffix));
 		loseSound.onComplete = function()
 		{
 			var chance = FlxG.random.int(0, 6);

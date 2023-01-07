@@ -39,7 +39,7 @@ class GameOverPolygonizedSubState extends MusicBeatSubstate
 				bgSuffix = 'void/redsky';
 			case 'bambi-3d':
 				deathSuffix = '-bambi';
-				bgSuffix = 'cheating/cheater';
+				bgSuffix = 'void/cheater';
 		}
 
 		bg = new FlxSprite(-600, -200).loadGraphic(Paths.image('backgrounds/$bgSuffix', 'shared'));

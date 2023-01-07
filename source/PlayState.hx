@@ -377,10 +377,7 @@ class PlayState extends MusicBeatState
 
 	var preRecursedHealth:Float;
 	var preRecursedSkin:String;
-	var rotateCamToRight:Bool;
 	var camRotateAngle:Float = 0;
-
-	var rotatingCamTween:FlxTween;
 
 	static var DOWNSCROLL_Y:Float;
 	static var UPSCROLL_Y:Float;
@@ -643,7 +640,7 @@ class PlayState extends MusicBeatState
 					stageCheck = 'farm';
 				case 'indignancy':
 					stageCheck = 'farm-night';
-				case 'splitathon' | 'mealie' | 'shredder':
+				case 'splitathon' | 'mealie':
 					stageCheck = 'farm-night';
 				case 'shredder' | 'greetings':
 					stageCheck = 'festival';
@@ -2665,10 +2662,6 @@ class PlayState extends MusicBeatState
 					}
 				}
 			}
-			if (rotatingCamTween != null)
-			{
-				rotatingCamTween.active = false;
-			}
 			for (tween in pauseTweens)
 			{
 				tween.active = false;
@@ -2734,10 +2727,6 @@ class PlayState extends MusicBeatState
 						tween.active = true;
 					}
 				}
-			}
-			if (rotatingCamTween != null)
-			{
-				rotatingCamTween.active = true;
 			}
 			for (tween in pauseTweens)
 			{
@@ -2900,19 +2889,11 @@ class PlayState extends MusicBeatState
 					timeLeftText.text = FlxStringUtil.formatTime(Math.floor(timeLeft));
 				}
 
-				camRotateAngle += elapsed * 5 * (rotateCamToRight ? 1 : -1);
+				var rotateTime:Float = 1.15;
+				camRotateAngle = -5 * Math.cos((elapsedtime * rotateTime) * rotateTime);
 
 				FlxG.camera.angle = camRotateAngle;
 				camHUD.angle = camRotateAngle;
-
-				if (camRotateAngle > 8)
-				{
-					rotateCamToRight = false;
-				}
-				else if (camRotateAngle < -8)
-				{
-					rotateCamToRight = true;
-				}
 				
 				health = FlxMath.lerp(0, 2, timeLeft / timeGiven);
 			}
@@ -2977,17 +2958,21 @@ class PlayState extends MusicBeatState
 
 				persistentUpdate = false;
 				persistentDraw = false;
-				paused = true;
 	
 				vocals.volume = 0;
 				FlxG.sound.music.volume = 0;
 
 				FlxTween.tween(camHUD, {alpha: 0}, 1);
 				
-				for (note in unspawnNotes)
+				notes.forEachAlive(function(daNote:Note)
 				{
-					unspawnNotes.remove(note);
-				}
+					daNote.active = false;
+					daNote.visible = false;
+
+					daNote.kill();
+					notes.remove(daNote, true);
+					daNote.destroy();
+				});
 
 				var black = new FlxSprite().makeGraphic(FlxG.width * 2, FlxG.height * 2, FlxColor.BLACK);
 				black.scrollFactor.set();
@@ -3000,6 +2985,7 @@ class PlayState extends MusicBeatState
 			if (powerRanOut)
 			{
 				curStep < 1088 ? {
+					vocals.volume = 0;
 					new FlxTimer().start(FlxG.random.int(2, 4), function(timer:FlxTimer)
 					{
 						if (FlxG.random.int(0, 4) == 0)
@@ -3013,7 +2999,8 @@ class PlayState extends MusicBeatState
 					persistentUpdate = true;
 					persistentDraw = true;
 					
-					camHUD.alpha = 1;
+					FlxTween.tween(camHUD, {alpha: 1}, 1);
+					
 					vocals.volume = 1;
 					FlxG.sound.music.volume = 0.8;
 					sixAM();
@@ -3036,12 +3023,12 @@ class PlayState extends MusicBeatState
 					dad.playAnim('fail');
 					dad.animation.finishCallback = function(animation:String)
 					{
-						new FlxTimer().start(1.25, function(timer:FlxTimer)
-						{
-							dad.canDance = true;
-							dad.canSing = true;
-							dad.dance();
-						});
+						dad.canDance = true;
+						dad.canSing = true;
+						dad.holdTimer = 0;
+						
+						dad.dance();
+						dad.animation.finishCallback = null;
 					};
 					powerLeft -= FlxG.random.int(2, 4);
 				} : {
@@ -3629,6 +3616,10 @@ class PlayState extends MusicBeatState
 			vocals.time = Conductor.songPosition;
 			vocals.play();
 			boyfriend.stunned = false;
+		}
+		if (FlxG.keys.justPressed.NINE)
+		{
+			powerLeft = 0;
 		}
 		if (FlxG.keys.justPressed.THREE)
 			FlxG.switchState(new AnimationDebug(gf.curCharacter));
@@ -5116,7 +5107,6 @@ class PlayState extends MusicBeatState
 				boyfriend.color = bfTween.color;
 			}
 
-
 			switch (note.noteStyle)
 			{
 				default:
@@ -5302,8 +5292,6 @@ class PlayState extends MusicBeatState
 		timerIcon.cameras = [camHUD];
 		add(timerIcon);
 		recursedUI.add(timerIcon);
-
-		rotateRecursedCam();
 	}
 	function removeRecursed()
 	{
@@ -5374,25 +5362,12 @@ class PlayState extends MusicBeatState
 			}
 		}
 	}
-	function rotateRecursedCam()
-	{
-		rotatingCamTween = FlxTween.tween(FlxG.camera, {angle: 8}, 5, {onComplete: function(tween:FlxTween)
-		{
-			FlxTween.tween(FlxG.camera, {angle: -8}, 5);
-		}, type: FlxTweenType.ONESHOT, ease: FlxEase.backOut});
-	}
 	function cancelRecursedCamTween()
 	{
-		if (rotatingCamTween != null)
-		{
-			rotatingCamTween.cancel();
-			rotatingCamTween = null;
-	
-			camRotateAngle = 0;
+		camRotateAngle = 0;
 			
-			FlxG.camera.angle = 0;
-			camHUD.angle = 0;
-		}
+		FlxG.camera.angle = 0;
+		camHUD.angle = 0;
 	}
 	function cinematicBars(time:Float, closeness:Float)
 	{
@@ -6170,17 +6145,27 @@ class PlayState extends MusicBeatState
 				switch (curStep)
 				{
 					case 124 | 304 | 496 | 502 | 576 | 848:
+						if (curStep == 304)
+						{
+							crazyZooming = false;
+						}
 						defaultCamZoom += 0.2;
 					case 176:
 						defaultCamZoom -= 0.2;
 						crazyZooming = true;
 					case 320 | 832 | 864:
+						if (curStep == 832)
+						{
+							crazyZooming = false;
+						}
+						if ([320, 864].contains(curStep))
+						{
+							crazyZooming = true;	
+						}
 						defaultCamZoom -= 0.2;
 					case 508:
-						defaultCamZoom -= 0.4;		
-					case 320 | 864:
-						crazyZooming = true;	
-					case 304 | 832 | 1088 | 2144:
+						defaultCamZoom -= 0.4;
+					case 1088 | 2144:
 						crazyZooming = false;
 					case 1216:
 						defaultCamZoom += 0.2;
@@ -7546,11 +7531,14 @@ class PlayState extends MusicBeatState
 		dad.canDance = false;
 		dad.canSing = false;
 		dad.playAnim('attack', true);
+		
 		var runSfx = new FlxSound().loadEmbedded(Paths.soundRandom('fiveNights/run', 1, 2, 'shared'));
 		runSfx.play();
 	}
 	function sixAM()
 	{
+		camZooming = false;
+
 		FlxG.sound.music.volume = 1;
 		vocals.volume = 1;
 		camHUD.alpha = 1;

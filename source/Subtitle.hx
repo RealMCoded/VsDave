@@ -73,7 +73,7 @@ class Subtitle extends FlxTypeText
       if (properties.subtitleSize == null) properties.subtitleSize = 36;
       if (properties.typeSpeed == null) properties.typeSpeed = 0.02;
       if (properties.centerScreen == null) properties.centerScreen = true;
-      if (properties.screenCenter == null) properties.screenCenter = FlxAxes.XY;
+      if (properties.screenCenter == null) properties.screenCenter = FlxAxes.X;
       if (properties.sounds == null) properties.sounds = null;
       return properties;
    }
