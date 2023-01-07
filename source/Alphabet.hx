@@ -1,3 +1,5 @@
+package;
+
 import Shaders.InvertShader;
 import flixel.FlxG;
 import flixel.FlxSprite;

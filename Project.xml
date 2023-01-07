@@ -80,7 +80,12 @@
 
 	<!-- _________________________________ Custom _______________________________ -->
 
-	<icon path="art/icons/dave.png" />
+	<!--Place custom nodes like icons here (higher priority to override the HaxeFlixel icon)-->
+	
+	<icon path="art/icons/dave16.png" size='16'/>
+	<icon path="art/icons/dave32.png" size='32'/>
+	<icon path="art/icons/dave64.png" size='64'/>
+	<icon path="art/icons/dave.png"/>
 
 	<!-- ________________________ Import Linux Stuff _____________________________ -->
 	<target id="haxe" tool="linker" if="linux">

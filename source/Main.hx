@@ -1,3 +1,5 @@
+package;
+
 import openfl.text.TextFormat;
 import flixel.FlxGame;
 import flixel.FlxState;

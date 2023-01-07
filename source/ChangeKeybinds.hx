@@ -1,3 +1,5 @@
+package;
+
 import Controls.KeyboardScheme;
 import flixel.input.actions.FlxActionInput;
 import flixel.addons.display.FlxShaderMaskCamera;

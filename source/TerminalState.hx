@@ -1,3 +1,5 @@
+package;
+
 import flixel.math.FlxMath;
 import flixel.group.FlxGroup;
 import sys.io.File;

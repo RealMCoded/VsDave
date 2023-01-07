@@ -1,3 +1,5 @@
+package;
+
 import Controls.KeyboardScheme;
 import flixel.util.FlxSave;
 import flixel.input.keyboard.FlxKey;

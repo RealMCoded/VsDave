@@ -1,6 +1,8 @@
 # Compiling
 Just follow a basic [compiling tutorial.](https://github.com/ninjamuffin99/Funkin#build-instructions)
 Instead of using Haxe 4.1.5, use the [latest Haxe](https://haxe.org/download/), the issues mentioned in the guide are already fixed.
+(Note: If you're having this issue: "Type not found : VideoHandler"
+do "haxelib git hxCodec https://github.com/polybiusproxy/hxCodec" in the CMD/Terminal)
 
 # Modding
 Just edit the source code it's not that hard (unless you can't code)...

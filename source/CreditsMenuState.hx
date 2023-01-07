@@ -1,3 +1,5 @@
+package;
+
 #if desktop
 import cpp.abi.Abi;
 #end
@@ -170,11 +172,6 @@ class CreditsMenuState extends MusicBeatState
       new Person("Aadsta", CreditsType.Contributor,
       [
          new Social('twitter', 'https://twitter.com/FullNameDeTrain')
-      ]),
-      new Person("Project Tea", CreditsType.Contributor,
-      [
-         new Social('youtube', 'https://youtube.com/c/ProjectTea'),
-         new Social('discord', 'Project Tea#9139'),
       ]),
       new Person("Top 10 Awesome", CreditsType.Contributor,
       [
