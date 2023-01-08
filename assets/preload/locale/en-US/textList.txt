@@ -84,8 +84,8 @@ option_noteCamera_on==Camera Movement On Note
 option_noteCamera_off==Normal Camera
 
 option_change_langauge==Change Language
-option_disable_fps==Disable FPS & Memory Counter
-option_enable_fps==Enable FPS & Memory Counter
+option_disable_fps==Disable FPS and Mem Counter
+option_enable_fps==Enable FPS and Mem Counter
 
 option_songBarType_ShowTime==Song Bar Type: Time Left
 option_songBarType_SongName==Song Bar Type: Show Song Name

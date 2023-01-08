@@ -1,3 +1,5 @@
+package;
+
 import Conductor.BPMChangeEvent;
 import flixel.FlxSubState;
 

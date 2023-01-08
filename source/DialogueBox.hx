@@ -1,3 +1,5 @@
+package;
+
 import flixel.math.FlxPoint;
 import openfl.display.Shader;
 import flixel.tweens.FlxTween;

@@ -1,3 +1,5 @@
+package;
+
 import Song.SwagSong;
 
 typedef BPMChangeEvent =

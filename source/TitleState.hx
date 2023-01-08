@@ -1,3 +1,5 @@
+package;
+
 import flixel.FlxG;
 import flixel.FlxSprite;
 import flixel.addons.transition.FlxTransitionSprite.GraphicTransTileDiamond;
@@ -289,6 +291,10 @@ class TitleState extends MusicBeatState
 
 		if (FlxG.keys.justPressed.ALT)
 		{
+			// So it doesn't crash cuz of the transition
+			FlxTransitionableState.skipNextTransIn = true;
+			FlxTransitionableState.skipNextTransOut = true;
+
 			FlxG.switchState(new CompatWarningState());
 		}
 

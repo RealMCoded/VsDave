@@ -1,3 +1,5 @@
+package;
+
 import flixel.math.FlxRandom;
 import lime.utils.Assets;
 
@@ -93,6 +95,10 @@ class CoolUtil
 		minAndMaxs.push(max);
 
 		return minAndMaxs;
+	}
+
+	inline public static function boundTo(value:Float, min:Float, max:Float):Float {
+		return Math.max(min, Math.min(max, value));
 	}
 
 	public static function cacheImage(image:String)

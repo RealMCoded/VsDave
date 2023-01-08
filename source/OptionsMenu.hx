@@ -1,3 +1,5 @@
+package;
+
 import flixel.tweens.FlxTween;
 import flixel.tweens.FlxEase;
 import Controls.KeyboardScheme;

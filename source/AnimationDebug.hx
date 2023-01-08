@@ -1,3 +1,5 @@
+package;
+
 import flixel.ui.FlxButton;
 import openfl.net.FileReference;
 import openfl.display.TriangleCulling;
