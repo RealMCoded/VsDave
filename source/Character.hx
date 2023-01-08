@@ -1,3 +1,4 @@
+import flixel.math.FlxPoint;
 import flixel.util.FlxColor;
 import flixel.FlxSprite;
 
@@ -24,6 +25,8 @@ class Character extends FlxSprite
 
 	public var canSing:Bool = true;
 	public var skins:Map<String, String> = new Map<String, String>();
+
+	public var scaleOffset:FlxPoint = new FlxPoint();
 
 	public function new(x:Float, y:Float, ?character:String = "bf", ?isPlayer:Bool = false)
 	{
@@ -1147,7 +1150,7 @@ class Character extends FlxSprite
 		var daOffset = animOffsets.get(AnimName);
 		if (animOffsets.exists(AnimName))
 		{
-			offset.set(daOffset[0] * offsetScale, daOffset[1] * offsetScale);
+			offset.set((daOffset[0] * offsetScale) + scaleOffset.x, (daOffset[1] * offsetScale) + scaleOffset.y);
 		}
 		else
 			offset.set(0, 0);
@@ -1169,7 +1172,6 @@ class Character extends FlxSprite
 			}
 		}
 	}
-
 	public function addOffset(name:String, x:Float = 0, y:Float = 0)
 	{
 		animOffsets[name] = [x, y];
@@ -1179,5 +1181,7 @@ class Character extends FlxSprite
 		scale.set(x, y);
 		width = Math.abs(x) * frameWidth;
 		height = Math.abs(y) * frameHeight;
+
+		scaleOffset.set(-0.5 * (width - frameWidth), -0.5 * (height - frameHeight));
 	}
 }

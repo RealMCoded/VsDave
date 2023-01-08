@@ -378,6 +378,7 @@ class PlayState extends MusicBeatState
 	var preRecursedHealth:Float;
 	var preRecursedSkin:String;
 	var camRotateAngle:Float = 0;
+	var camRotateTime:Float = 0;
 
 	static var DOWNSCROLL_Y:Float;
 	static var UPSCROLL_Y:Float;
@@ -624,9 +625,8 @@ class PlayState extends MusicBeatState
 				case 'polygonized': 'red-void';
 				case 'bonus-song': 'inside-house';
 				case 'blocked' | 'corn-theft' | 'maze': 'farm';
-				case 'indignancy': 'farm-night';
-				case 'splitathon' | 'mealie': 'farm-night';
-				case 'shredder' | 'greetings': 'festival';
+				case 'splitathon' | 'mealie' | 'indignancy' | 'shredder': 'farm-night';
+				case 'greetings': 'festival';
 				case 'interdimensional': 'interdimension-void';
 				case 'rano': 'backyard';
 				case 'cheating': 'green-void';
@@ -668,7 +668,7 @@ class PlayState extends MusicBeatState
 		}
 		var gfVersion:String = 'gf';
 		
-		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'escape-from-california', 'overdrive'];
+		var noGFSongs = ['memory', 'five-nights', 'bot-trot', 'escape-from-california', 'overdrive', 'shredder'];
 		
 		if(SONG.gf != null)
 		{
@@ -2843,6 +2843,8 @@ class PlayState extends MusicBeatState
 			}
 			if (isRecursed)
 			{
+				camRotateTime += elapsed;
+				
 				timeLeft -= elapsed;
 				if (timeLeftText != null)
 				{
@@ -2850,7 +2852,7 @@ class PlayState extends MusicBeatState
 				}
 
 				var rotateTime:Float = 1.15;
-				camRotateAngle = -5 * Math.cos((elapsedtime * rotateTime) * rotateTime);
+				camRotateAngle = -5 * Math.cos((camRotateTime * rotateTime) * rotateTime);
 
 				FlxG.camera.angle = camRotateAngle;
 				camHUD.angle = camRotateAngle;
@@ -5319,6 +5321,7 @@ class PlayState extends MusicBeatState
 	function cancelRecursedCamTween()
 	{
 		camRotateAngle = 0;
+		camRotateTime = 0;
 			
 		FlxG.camera.angle = 0;
 		camHUD.angle = 0;
@@ -6382,7 +6385,10 @@ class PlayState extends MusicBeatState
 						{
 							spr.alpha = 1;
 						});
-						
+						notes.forEachAlive(function(daNote:Note)
+						{
+							daNote.MyStrum = null;
+						});
 						lockCam = true;
 						
 						originalBFScale = boyfriend.scale.copyTo(originalBFScale);
@@ -6390,11 +6396,12 @@ class PlayState extends MusicBeatState
 						originBambiPos = dad.getPosition();
 
 						dad.cameras = [camHUD];
-						dad.scrollFactor.set();
-						dad.setPosition(71, 82);
+						
 						dad.setScale(dad.scale.x * 0.55, dad.scale.y * 0.55);
 						dad.offsetScale = 0.55;
-						
+						dad.scrollFactor.set();
+						dad.setPosition(88, 88);
+
 						bambiSpot = new FlxSprite(34, 151).loadGraphic(Paths.image('festival/shredder/bambi_spot'));
 						bambiSpot.scrollFactor.set();
 						bambiSpot.blend = BlendMode.ADD;
@@ -6411,7 +6418,13 @@ class PlayState extends MusicBeatState
 						boyfriend.setScale(boyfriend.scale.x * 0.45, boyfriend.scale.y * 0.45);
 						boyfriend.offsetScale = 0.45;
 						boyfriend.scrollFactor.set();
-						boyfriend.setPosition((bfSpot.x - (boyfriend.width / 3.25)) + boyfriend.globalOffset[0] * boyfriend.offsetScale, (bfSpot.y - (boyfriend.height * 1.1)) + boyfriend.globalOffset[1] * boyfriend.offsetScale);
+						
+						var offset:FlxPoint = switch (boyfriend.curCharacter)
+						{
+							case 'pixel-bf': new FlxPoint(0, 0);
+							default: new FlxPoint(boyfriend.globalOffset[0] * boyfriend.scale.x, boyfriend.globalOffset[1] * boyfriend.scale.y);
+						}
+						boyfriend.setPosition(1040 + offset.x, 300 + offset.y);
 						boyfriend.alpha = 0;
 
 						insert(members.indexOf(bfGroup), bfSpot);
@@ -6485,8 +6498,7 @@ class PlayState extends MusicBeatState
 							switchDad('bambi-new', originBambiPos, false);
 
 							boyfriend.cameras = dad.cameras;
-							boyfriend.scale.set(originalBFScale.x, originalBFScale.y);
-							boyfriend.updateHitbox();
+							boyfriend.setScale(originalBFScale.x, originalBFScale.y);
 							boyfriend.offsetScale = 1;
 							boyfriend.scrollFactor.set(1, 1);
 							boyfriend.setPosition(originBFPos.x, originBFPos.y);
@@ -6913,13 +6925,6 @@ class PlayState extends MusicBeatState
 			var curSection = SONG.notes.indexOf(currentSection);
 			guitarSection = curSection >= 64 && curSection < 80;
 			dadStrumAmount = guitarSection ? 5 : 4;
-			if (guitarSection)
-			{
-				notes.forEachAlive(function(daNote:Note)
-				{
-					daNote.MyStrum = null;
-				});
-			}
 		}
 		switch (curSong.toLowerCase())
 		{
